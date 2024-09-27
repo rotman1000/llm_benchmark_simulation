@@ -1,0 +1,10 @@
+fastapi
+sqlalchemy
+psycopg2-binary
+ollama
+uvicorn
+tenacity
+fastapi-cors
+bcrypt
+pytest
+prometheus_client
