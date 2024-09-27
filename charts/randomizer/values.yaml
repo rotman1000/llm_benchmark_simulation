@@ -1,0 +1,8 @@
+replicaCount: 1
+
+image:
+  repository: rotimiakanni/randomizer-service
+  tag: "latest"
+
+service:
+  type: LoadBalancer

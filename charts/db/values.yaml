@@ -1,0 +1,7 @@
+replicaCount: 1
+
+image:
+  repository: postgres
+  tag: "13"
+
+resources: {}

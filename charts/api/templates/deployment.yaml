@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-service
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 8081
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://user:password@postgres-db:5432/llm_benchmark"
+  containers:
+    - name: api
+      image: "jounce-api"
+      env:
+      - name: API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: api-secrets
+            key: api-key

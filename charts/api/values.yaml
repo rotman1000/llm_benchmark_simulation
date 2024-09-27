@@ -1,0 +1,8 @@
+replicaCount: 2
+
+image:
+  repository: rotimiakanni/api-service
+  tag: "latest"
+
+service:
+  type: LoadBalancer
