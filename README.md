@@ -25,33 +25,41 @@ This project contains two microservices for benchmarking various Large Language 
 ## Running Locally with Docker Compose
 To run the microservices locally using Docker Compose, follow these steps:
 
-1. Clone the repository:
+### 1. Clone the repository:
 
 ```
 git clone <repository-url>
-cd llm-benchmark
+cd llm_benchmark_simulation
 ```
 
-2. Build and start the services:
+### 2. Build and start the services:
 ```
 docker-compose up --build
 ```
-3. The services will start with the following ports:
+### 3. The services will start with the following ports:
 - Frontend Service: localhost:3000
 - API Service: localhost:8081
 - Randomizer Service: localhost:8080
 - PostgreSQL: Exposed on localhost:5432
 
-4. Access the services:
+### 4. Call this endpoint to create an API key `http://localhost:8081/get_api_key`
+
+### 5. Add environment variables in the root folder
+```
+REACT_APP_API_BASE_URL=http://localhost:8081
+REACT_APP_API_KEY=<api-key-generated-from 4 above>
+```
+
+### 6. Access the services:
 - Frontend: Open http://localhost:3000 in your browser to interact with the system.
 - API Swagger Documentation: Visit http://localhost:8081/docs to access the API service Swagger UI.
 - Randomizer Swagger Documentation: Visit http://localhost:8080/docs to explore the Randomizer service API.
 
-5. To test the API service, query the rankings endpoint:
+### 7. To test the API service, query the rankings endpoint:
 ```
 curl http://localhost:8081/rankings/TTFT
 ```
-5. To test the Randomizer service, generate fake data:
+### 8. To test the Randomizer service, generate fake data:
 ```
 curl http://localhost:8080/generate?factory_type=fake
 ```
@@ -82,17 +90,6 @@ helm install randomizer-service .
 kubectl get pods
 ```
 6. Get the external IPs of the services to access them.
-
-### Environment Variables
-Ensure the following environment variables are set for the API and Randomizer services:
-
-DATABASE_URL: The PostgreSQL connection string in the format postgresql://<user>:<password>@<hostname>:5432/<database>.
-API_KEY: The API key
-
-Ensure the following environment variables are set for the frontend service:
-
-REACT_APP_API_BASE_URL=http://localhost:8081 (for local setup)
-REACT_APP_API_KEY=secret_api_key (for local setup)
 
 ## Stopping the Services
 To stop the services when running locally with Docker Compose:
