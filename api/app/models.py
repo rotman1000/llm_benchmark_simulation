@@ -33,5 +33,5 @@ class APIKey(Base):
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.datetime.now(timezone.utc))
     expires_at = Column(DateTime, default=lambda: datetime.datetime.now(timezone.utc) + timedelta(days=30))  # API key expires in 30 days
-    last_used_at = Column(DateTime, default=datetime.now(timezone.utc), 
-                        onupdate=datetime.now(timezone.utc))
+    last_used_at = Column(DateTime, default=datetime.datetime.now(timezone.utc), 
+                        onupdate=datetime.datetime.now(timezone.utc))
