@@ -1,5 +1,5 @@
 import datetime
-from datetime import timedelta
+from datetime import timedelta, timezone
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, DateTime, Boolean
 from sqlalchemy.orm import relationship
 from .database import Base
@@ -31,6 +31,7 @@ class APIKey(Base):
     id = Column(Integer, primary_key=True, index=True)
     key = Column(String, unique=True, nullable=False)
     is_active = Column(Boolean, default=True)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow)
-    expires_at = Column(DateTime, default=lambda: datetime.datetime.utcnow() + timedelta(days=30))  # API key expires in 30 days
-    last_used_at = Column(DateTime)
+    created_at = Column(DateTime, default=datetime.datetime.now(timezone.utc))
+    expires_at = Column(DateTime, default=lambda: datetime.datetime.now(timezone.utc) + timedelta(days=30))  # API key expires in 30 days
+    last_used_at = Column(DateTime, default=datetime.now(timezone.utc), 
+                        onupdate=datetime.now(timezone.utc))
