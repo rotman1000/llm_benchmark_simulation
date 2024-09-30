@@ -3,7 +3,6 @@ import axios from 'axios';
 // Define the base URL for the API
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
-console.log(API_BASE_URL);
 
 /**
  * Function to fetch rankings for a given metric.
